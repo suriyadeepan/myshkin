@@ -1,12 +1,5 @@
 #!/usr/bin/env node
 
-/*!
- * Bot - Feeling lonely? You personal bot is here.
- * 
- * Veselin Todorov <hi@vesln.com>
- * MIT License.
- */
- 
 /**
  * Module dependencies.
  */
@@ -69,19 +62,74 @@ var exit = 'exit';
  */
 var rl = readline.createInterface(process.stdin, process.stdout)
 
+
+var gmsg_chat_id
+var gmsg_message_id
+
+/******************************************************************/
+var Telegram = require('telegram-bot');
+var tg = new Telegram(process.env.TOKEN);
+
+tg.on('message', function(msg) {
+  if (!msg.text) return;
+	gmsg = msg
+	console.log("text : \"" + msg.text + "\" from " + msg.chat.id)
+
+	/*if ( msg.text == 'hi'|| msg.text == 'Hi' || msg.text == 'help' || msg.text == 'Help'){
+		reply = 'Hello there! I am Prince Myshkin created by Dostoevsky!\n'
+		reply += 'Commands : \'help\', \'hi\', \'time\', \'location\' ' 
+	}
+
+	else if(msg.text == 'time' || msg.text == 'Time')
+		reply = new Date().toISOString()
+	else if(msg.text == 'location' || msg.text == 'Location')
+		reply = 'Goa, India'
+	else if(msg.text == 'random' || msg.text == 'rand' || msg.text == 'Random' || msg.text == 'Rand'){
+		//download('https://www.google.com/images/srpr/logo3w.png', 'google.png', function(){ console.log('done'); });	
+		reply = '!9gag:'
+	}
+	else
+		reply = msg.text*/
+	reply = bot.answer(msg.text)
+	console.log(">> Bot says \" " + reply + "\"")
+  tg.sendMessage({
+    text: reply,
+    reply_to_message_id: msg.message_id,
+    chat_id: msg.chat.id
+  });
+
+	gmsg_chat_id = msg.chat.id
+	gmsg_message_id = msg.message_id
+
+	
+
+});
+
+tg.start();
+/********************************************************************/
+
+
 // When user type something.
 rl.on('line', function(line) {
   if (line.trim() === 'exit') return rl.emit('close');
-  console.log(nick + bot.answer(line));
-  rl.setPrompt(you, you.length  - 10);
-  rl.prompt();
+  //console.log(nick + bot.answer(line));
+  //rl.setPrompt(you, you.length  - 10);
+  //rl.prompt();
+
+	console.log("user: "+ line)
+	tg.sendMessage({
+		text: line,
+		reply_to_message_id: gmsg_message_id,
+		chat_id: gmsg_chat_id
+	});
+
 });
 
-// On close.
+/*
 rl.on('close', function() {
   console.log('\n' + nick +'Nice chat. Have a great day!');
   process.exit(0);
-});
+});*/
 
 // Greeting.
 console.log(nick + 'Good to see you here, dude. Let\'s talk.');
