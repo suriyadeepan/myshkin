@@ -8,8 +8,6 @@ He is a wise man who will offer you valuable advise
 
 ## Description
 	
-Bot is simple, stupid node.js chat bot that will make your day better.
-
 Myshkin @Nikola_bot is a Telegram chat bot. I ripped off [bot](https://github.com/vesln/bot/) for the backend. Used [node-telegram-bot](https://github.com/orzFly/node-telegram-bot) for creating the bot. 
 
 Try it for youself. Myshkin is a lot of fun.
