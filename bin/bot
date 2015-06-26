@@ -75,21 +75,6 @@ tg.on('message', function(msg) {
 	gmsg = msg
 	console.log("text : \"" + msg.text + "\" from " + msg.chat.id)
 
-	/*if ( msg.text == 'hi'|| msg.text == 'Hi' || msg.text == 'help' || msg.text == 'Help'){
-		reply = 'Hello there! I am Prince Myshkin created by Dostoevsky!\n'
-		reply += 'Commands : \'help\', \'hi\', \'time\', \'location\' ' 
-	}
-
-	else if(msg.text == 'time' || msg.text == 'Time')
-		reply = new Date().toISOString()
-	else if(msg.text == 'location' || msg.text == 'Location')
-		reply = 'Goa, India'
-	else if(msg.text == 'random' || msg.text == 'rand' || msg.text == 'Random' || msg.text == 'Rand'){
-		//download('https://www.google.com/images/srpr/logo3w.png', 'google.png', function(){ console.log('done'); });	
-		reply = '!9gag:'
-	}
-	else
-		reply = msg.text*/
 	reply = bot.answer(msg.text)
 	console.log(">> Bot says \" " + reply + "\"")
   tg.sendMessage({
